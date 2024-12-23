@@ -1,0 +1,33 @@
+# Template file for 'apple-music-desktop'
+pkgname=apple-music-desktop
+version=2.1.2
+revision=1
+archs="x86_64"
+hostmakedepends="libcurl"
+makedepends="nodejs-lts tar"
+depends=""
+short_desc="An Electron app that provides a native Apple Music experience for Linux & Windows"
+maintainer="Marcin Pajkowski <marcin.pajkowski@gmail.com>"
+license="BSD-3-Clause"
+homepage="https://github.com/Alex313031/apple-music-desktop"
+distfiles="https://github.com/Alex313031/apple-music-desktop/archive/${version}.tar.gz"
+checksum=080dea32f1ef53a11868700dc2f1781b3f6fafe1e0b73d813b86e3eb9138cdc9
+
+post_extract() {
+	npm install --ignore-engines
+}
+
+do_build() {
+	npm run build
+}
+
+do_install() {
+	vmkdir usr/lib/apple-music-desktop
+
+	vcopy dist/linux-unpacked/* usr/lib/apple-music-desktop
+
+	vmkdir usr/bin
+	ln -s /usr/lib/apple-music-desktop/apple-music ${DESTDIR}/usr/bin/
+
+	vinstall ${FILESDIR}/apple-music-desktop.desktop 644 usr/share/applications
+}
