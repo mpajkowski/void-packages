@@ -1,0 +1,23 @@
+# Template file for 'winbox'
+pkgname=winbox
+version=4.0beta16
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+build_style=meta
+short_desc="GUI administration for Mikrotik RouterOS"
+maintainer="Marcin Pajkowski <marcin.pajkowski@gmail.com>"
+license="custom:Proprietary"
+homepage="https://mikrotik.com/download"
+distfiles="https://download.mikrotik.com/routeros/winbox/${version}/WinBox_Linux.zip"
+checksum=459a6c29ec3705a21debeb5cc1457a7e7894a421f8c083fd69be8fe6813b3809
+repository=nonfree
+restricted=yes
+nostrip=yes
+
+do_install() {
+	vbin WinBox
+	vmkdir usr/share/pixmaps
+	vinstall assets/img/winbox.png 0644 usr/share/pixmaps
+	vinstall "${FILESDIR}/winbox.desktop" 0644 usr/share/applications
+}
