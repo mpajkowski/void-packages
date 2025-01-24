@@ -1,0 +1,22 @@
+# Template file for 'winbox'
+pkgname=jetbrains-toolbox
+version=2.5.2.35332
+revision=1
+archs="x86_64"
+create_wrksrc=yes
+build_style=meta
+hostmakedepends="tar gzip"
+short_desc="JetBrains Toolbox app"
+maintainer="Marcin Pajkowski <marcin.pajkowski@gmail.com>"
+license="custom:Proprietary"
+homepage="https://www.jetbrains.com/toolbox-app/"
+distfiles="https://download-cdn.jetbrains.com/toolbox/jetbrains-toolbox-${version}.tar.gz"
+checksum=18f03ce755dabc574b30d269162281ad7a472c139688bb101740933b59da0fd3
+repository=nonfree
+restricted=yes
+nostrip=yes
+
+do_install() {
+	vbin "jetbrains-toolbox-${version}/jetbrains-toolbox"
+	vinstall "${FILESDIR}/jetbrains-toolbox.desktop" 0644 usr/share/applications
+}
