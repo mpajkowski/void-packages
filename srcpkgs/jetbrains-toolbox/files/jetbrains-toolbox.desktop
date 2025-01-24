@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=JetBrains Toolbox
+Comment=Manage your JetBrains tools
+Exec=/usr/bin/jetbrains-toolbox
+Icon=jetbrains-toolbox
+Categories=Development;IDE;
+Terminal=false
